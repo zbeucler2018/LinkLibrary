@@ -5,10 +5,10 @@ A single place for me to reference all my links.
 
 ### Todo
 - [ ] `all.md` page or figure out how to fix table of contents to not show url
-- [ ] set up github pages
+- [x] set up github pages
 - [ ] docker container
 - [ ] set up github actions
-    - [ ] on link add, commit to repo, trigger mkdocs deploy action
+    - [x] on link add, commit to repo, trigger mkdocs deploy action
     - [ ] build dockerfile 
 
 
