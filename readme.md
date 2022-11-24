@@ -10,6 +10,8 @@ A single place for me to reference all my links.
 - [ ] set up github actions
     - [x] on link add, commit to repo, trigger mkdocs deploy action
     - [ ] build dockerfile 
+- [ ] dont allow duplicate pages
+- [ ] auto upload links to internet archive and save archive link in page
 
 
 
