@@ -62,6 +62,7 @@ def update_github_pages(commit_msg: str=""):
     if commit_msg == "":
         commit_msg = "new page added " + str(int( time.time() )) 
     try:
+        time.sleep(5) # wait for file to be made
         repo = Repo(PATH_OF_GIT_REPO)
         repo.git.add(update=True)
         repo.index.commit(commit_msg)
