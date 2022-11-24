@@ -1,0 +1,8 @@
+site_name: Link Library
+
+
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+    scheme: slate
