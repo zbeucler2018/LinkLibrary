@@ -17,7 +17,10 @@ A single place for me to reference all my links.
 ```bash
 python3 -m venv env
 source env/bin/activate
+
 pip install mkdocs mkdocs-material pyyaml ezgmail gitpython
+# OR
+pip install -r requirements.txt
 ```
 
 

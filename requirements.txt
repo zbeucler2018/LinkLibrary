@@ -1,0 +1,5 @@
+EZGmail==2022.10.10
+GitPython==3.1.29
+mkdocs==1.4.2
+mkdocs-material==8.5.10
+PyYAML==6.0
