@@ -21,6 +21,10 @@ pip install mkdocs mkdocs-material pyyaml ezgmail
 ```
 
 
+### IOS shortcut
+<img src="https://user-images.githubusercontent.com/49871927/203728165-3a58c8c1-1e4d-4b3b-8892-4bf09b718db6.jpg" width="300px" height="500px" />
+
+
 ### mkdocs
 ```bash
 # new project
@@ -28,3 +32,4 @@ mkdocs new .
 # start dev server
 mkdocs serve
 ```
+
