@@ -12,6 +12,9 @@ A single place for me to reference all my links.
     - [ ] build dockerfile 
 - [ ] dont allow duplicate pages
 - [ ] auto upload links to internet archive and save archive link in page
+- [ ] add logging
+- [ ] stronger error handling
+- [ ] more stable alternative to email
 
 
 
