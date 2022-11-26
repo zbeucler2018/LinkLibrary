@@ -15,6 +15,8 @@ A single place for me to reference all my links.
 - [ ] add logging
 - [ ] stronger error handling
 - [ ] more stable alternative to email
+- [ ] figure out how to improve the search
+    - need a "deeper" search
 
 
 
@@ -37,13 +39,5 @@ pip install -r requirements.txt
 ### Links
 - [modifying mkdocs-material](https://squidfunk.github.io/mkdocs-material/customization/#overriding-blocks)
 - [ezgmail](https://github.com/asweigart/ezgmail)
-
-
-### mkdocs
-```bash
-# new project
-mkdocs new .
-# start dev server
-mkdocs serve
-```
-
+- [mkdocs](https://www.mkdocs.org/)
+- [mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
