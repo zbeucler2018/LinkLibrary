@@ -1,7 +1,7 @@
 
 
 # Link Library
-A single place for me to reference all my links.
+A single place for me to reference all my links. Working on maing this stable to leave running for a long time.
 
 ### Todo
 - [ ] `all.md` page or figure out how to fix table of contents to not show url
