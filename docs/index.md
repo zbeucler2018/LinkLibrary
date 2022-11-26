@@ -1,3 +1,5 @@
 # Welcome to Zack's Link Library
 
-Built with mkdocs and mkdocs-material
+A place for me to store resources I want to reference later.
+
+[Dev info](dev.md)
