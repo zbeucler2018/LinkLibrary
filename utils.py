@@ -5,6 +5,8 @@ import time
 from git import Repo
 
 
+
+
 def get_credentials(filename: str="env.yml"):
     try:
         with open(filename, "r") as stream:
@@ -21,15 +23,16 @@ def save_as_page(link: str, tags: str):
     try:
         timestamp = str(int( time.time() ))
         new_page_name = "./docs/{}".format(timestamp)
+        link_domain = get_domain_from_url(link)
         page_content = """
-# {0}
+# {link_domain}
 
-[{0}]({0})
+[{link_domain}]({0})
 
 
 ## Tags
 - {1}
-    """.format(link,tags)
+    """.format(link,link_domain,tags)
         with open(new_page_name+".md", "w") as f:
             f.write(page_content)
     except Exception as e:
@@ -64,9 +67,27 @@ def update_github_pages(commit_msg: str=""):
     try:
         time.sleep(5) # wait for file to be made
         repo = Repo(PATH_OF_GIT_REPO)
+        #repo.fetch()
         repo.git.add(update=True)
         repo.index.commit(commit_msg)
         origin = repo.remote(name='origin')
         origin.push()
     except:
-        print('Some error occured while pushing the code')  
+        print('Some error occured while pushing the code')
+
+
+# https://hostname/idk/idk --> hostname/idk/idk
+# www.hostname/idk         --> hostname/idk
+def get_domain_from_url(url: str):
+    if url[:8] == "https://":
+        url = url[8:]
+    if url[:4] == "www.":
+        url = url[4:]
+    return url
+
+
+
+
+
+h = "https://github.com/facebook/memlab"
+print(get_domain_from_url(h))
