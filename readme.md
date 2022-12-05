@@ -17,6 +17,7 @@ A single place for me to reference all my links. Working on maing this stable to
 - [ ] more stable alternative to email
 - [ ] figure out how to improve the search
     - need a "deeper" search
+        - cant find facebook in https://github.com/facebook/XYZ
 
 
 
