@@ -34,34 +34,22 @@ while True:
     for threads in unread_emails:
         thread = threads.messages
         for email in thread:
+            logging.info(f"Looking at email")
             if (email.sender in white_list):
                 new_pages_to_add = True
-                logging.info("got email: " + email.subject + " | " + email.body)
-                utils.save_link(email.subject, email.body)
-                time.sleep(1) # prevents us from overwritting files
+                logging.info("got link: " + email.subject + " | " + email.body)
+                utils.save_as_page(email.subject, email.body)
+                if new_pages_to_add:
+                    logging.info('Updating github...')
+                    utils.update_github_pages()
+                sys.exit()
+                #time.sleep(1) # prevents us from overwritting files
 
-        threads.markAsRead()
+        #threads.markAsRead()
 
-        if new_pages_to_add:
-            logging.info('Updating github...')
-            utils.update_github_pages()
+
         
+    logging.info("sleeping...")
+    sys.exit()
+    #time.sleep(60*wait_time_minutes)
 
-    time.sleep(60*wait_time_minutes)
-
-
-
-
-
-# page_content = """
-# # {0}
-
-# [{0}]({0})
-
-# <div style=" display: block; margin: 0 auto;">
-#     <iframe src="{0}"></iframe>
-# </div>
-
-# ## Tags
-# - {1}
-#     """.format(link,tags)

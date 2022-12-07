@@ -3,6 +3,17 @@
 import yaml
 import time
 from git import Repo
+import logging
+import sys
+import subprocess
+
+
+logging.basicConfig(
+    filename='app.log', 
+    filemode='a', 
+    format='%(name)s - %(levelname)s - %(message)s',
+    level=logging.DEBUG
+    )
 
 
 
@@ -22,21 +33,16 @@ def get_credentials(filename: str="env.yml"):
 def save_as_page(link: str, tags: str):
     try:
         timestamp = str(int( time.time() ))
-        new_page_name = "./docs/{}".format(timestamp)
+        new_page_name = f"./docs/{timestamp}.md"
         link_domain = get_domain_from_url(link)
-        page_content = """
-# {link_domain}
-
-[{link_domain}]({0})
-
-
-## Tags
-- {1}
-    """.format(link,link_domain,tags)
-        with open(new_page_name+".md", "w") as f:
+        print(type(link_domain))
+        logging.info(f"Making page with link: {link_domain} and tags: {tags}")
+        page_content = f"\n# {link_domain}\n\n[{link_domain}]({link})\n\n\n## Tags\n- {tags}"
+        with open(new_page_name, "w") as f:
             f.write(page_content)
-    except Exception as e:
-        print(e)
+    except Exception:
+        logging.error(f"save_as_page got error with link: {link} tags: {tags}")
+        sys.exit()
 
 
 
@@ -44,19 +50,8 @@ def list_to_string(s: str):
     temp = ""
     for char in s:
         temp += (char + ",")
-    return temp[:-1] # remove last comma
-
-
-
-def save_link(link: str, tags: str):
-    try:
-        save_as_page(link, tags)
-    except Exception as e:
-        print("Couldn't make page", link, tags)
-        print(e)
-
-
-
+    result = temp[:-1]
+    return result # remove last comma
 
 
 
@@ -64,16 +59,23 @@ def update_github_pages(commit_msg: str=""):
     PATH_OF_GIT_REPO = './.git'  # make sure .git folder is properly configured
     if commit_msg == "":
         commit_msg = "new page added " + str(int( time.time() )) 
-    try:
-        time.sleep(5) # wait for file to be made
-        repo = Repo(PATH_OF_GIT_REPO)
-        #repo.fetch()
-        repo.git.add(update=True)
-        repo.index.commit(commit_msg)
-        origin = repo.remote(name='origin')
-        origin.push()
-    except:
-        print('Some error occured while pushing the code')
+#    try:
+    repo = Repo(PATH_OF_GIT_REPO)
+    #repo.remotes.fetch()
+    for remote in repo.remotes:
+        remote.fetch()
+    repo.git.add(update=True)
+    repo.index.commit(commit_msg)
+    origin = repo.remote(name='origin')
+    origin.push()
+    # except Exception as e:
+    #     print('Some error occured while pushing the code')
+    #     print(e)
+    # git_cmd = f"git fetch && git add *.md && git commit -m '{commit_msg} && git push && git fetch && git pull"
+
+    # process = subprocess.Popen(["git", "fetch"], stdout=subprocess.PIPE)
+    # output = process.communicate()[0]
+    # print(output)
 
 
 # https://hostname/idk/idk --> hostname/idk/idk
@@ -84,10 +86,3 @@ def get_domain_from_url(url: str):
     if url[:4] == "www.":
         url = url[4:]
     return url
-
-
-
-
-
-h = "https://github.com/facebook/memlab"
-print(get_domain_from_url(h))
