@@ -61,19 +61,18 @@ def update_github_pages(commit_msg: str=""):
         commit_msg = "new page added " + str(int( time.time() )) 
 #    try:
     repo = Repo(PATH_OF_GIT_REPO)
-    #repo.remotes.fetch()
     for remote in repo.remotes:
         remote.fetch()
     repo.git.add(update=True)
     repo.index.commit(commit_msg)
     origin = repo.remote(name='origin')
     origin.push()
-    # except Exception as e:
+    # # except Exception as e:
     #     print('Some error occured while pushing the code')
     #     print(e)
-    # git_cmd = f"git fetch && git add *.md && git commit -m '{commit_msg} && git push && git fetch && git pull"
-
-    # process = subprocess.Popen(["git", "fetch"], stdout=subprocess.PIPE)
+    # git_cmd = f"git fetch && git add *.md && git commit -m '{commit_msg} && git push && git fetch && git pull".split(" ")
+    # git_cmd = ['git', 'fetch', 'git', 'add']
+    # process = subprocess.Popen(git_cmd, stdout=subprocess.PIPE)
     # output = process.communicate()[0]
     # print(output)
 
